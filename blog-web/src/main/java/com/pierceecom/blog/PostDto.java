@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 public class PostDto {
 
     @Id
-    public static String id;
+    public String id;
 
     @NotNull
-    public static String title;
+    private String title;
 
     @NotNull
-    public static String content;
+    private String content;
 }
