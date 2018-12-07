@@ -1,4 +1,4 @@
-package com.pierceecom.blog;
+package com.pierceecom.blog.service;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

@@ -1,4 +1,4 @@
-package com.pierceecom.blog;
+package com.pierceecom.blog.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

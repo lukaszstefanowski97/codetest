@@ -1,4 +1,4 @@
-package com.pierceecom.blog;
+package com.pierceecom.blog.service;
 
 import java.time.LocalDate;
 import java.util.Optional;

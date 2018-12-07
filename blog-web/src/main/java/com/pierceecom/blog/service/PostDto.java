@@ -1,4 +1,4 @@
-package com.pierceecom.blog;
+package com.pierceecom.blog.service;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
