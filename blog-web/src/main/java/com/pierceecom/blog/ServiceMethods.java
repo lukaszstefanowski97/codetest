@@ -4,16 +4,16 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class ServiceMethods {
 
     public static Repository repository;
 
-    public static void post(PostDto post) throws Exceptions.PostExistsException {
+    public PostDto post(PostDto post) throws Exceptions.PostExistsException {
         if (repository.existsById(post.id)) {
             throw new Exceptions.PostExistsException("Post already exists");
         } else {
             post.setId(LocalDate.now().toString());
-            repository.save(post);
+            return repository.save(post);
         }
     }
 
@@ -33,14 +33,19 @@ public class Service {
         }
     }
 
-    public void getAllPosts() {
-        repository.findAll();
+    public Iterable getAllPosts() {
+        return repository.findAll();
+    }
+
+    public Boolean doesPostExist(String id) {
+        return repository.existsById(id);
     }
 
     public Optional<PostDto> findPostWithGivenId(String id) throws Exceptions.PostExistsException {
         if (!repository.existsById(id)) {
             throw new Exceptions.PostExistsException("404 Post with given id does not exist");
+        } else {
+            return repository.findById(id);
         }
-        return repository.findById(id);
     }
 }

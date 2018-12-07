@@ -10,17 +10,21 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import static com.google.common.collect.Sets.newHashSet;
+
 @Configuration
 @EnableSwagger2
 public class Swagger {
 
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
+        return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/posts.*"))
-                .build();
+                .paths(PathSelectors.regex("/posts/*"))
+                .build()
+                .apiInfo(apiInfo())
+                .useDefaultResponseMessages(false)
+                .apiInfo(apiInfo()).protocols(newHashSet("http"));
     }
 
     public ApiInfo apiInfo() {
