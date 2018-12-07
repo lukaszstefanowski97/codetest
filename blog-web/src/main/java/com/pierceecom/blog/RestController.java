@@ -1,6 +1,8 @@
 package com.pierceecom.blog;
 
-import io.swagger.models.Model;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,41 +24,59 @@ public class RestController {
         this.service = service;
     }
 
-
     @RequestMapping(value = "/posts", method= RequestMethod.GET)
-    public Iterable list(Model model){
-        Iterable productList = service.getAllPosts();
-        return productList;
+    @ApiOperation(value = "Display all posts", nickname = "getAllPosts")
+    @ApiResponse(code = 200, message = "OK", response = PostDto.class)
+    public Iterable list(){
+        return service.getAllPosts();
     }
 
     @RequestMapping(value = "/posts/{id}", method= RequestMethod.GET)
-    public Optional<PostDto> showProduct(@PathVariable String id, Model model) throws Exceptions.PostExistsException {
+    @ApiOperation(value = "Display selected post", nickname = "getPostById")
+    @ApiResponses ({
+        @ApiResponse(code = 200, message = "OK", response = PostDto.class),
+        @ApiResponse(code = 404, message = "Post not found")
+    })
+    public Optional<PostDto> showPost(@PathVariable String id) throws Exceptions.PostExistsException {
         Optional<PostDto> post = service.findPostWithGivenId(id);
         return post;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity saveProduct(@RequestBody PostDto post) throws Exceptions.PostExistsException {
+    @ApiOperation(value = "Save Post", nickname = "getAllPosts")
+    @ApiResponse(code = 200, message = "OK", response = PostDto.class)
+
+    public ResponseEntity savePost(@RequestBody PostDto post) throws Exceptions.PostExistsException {
         service.post(post);
         return new ResponseEntity("Post saved successfully", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateProduct(@PathVariable String id, @RequestBody PostDto post) throws Exceptions.PostExistsException {
+    @ApiOperation(value = "Update Post", nickname = "updatePost")
+    @ApiResponses ({
+            @ApiResponse(code = 200, message = "OK", response = PostDto.class),
+            @ApiResponse(code = 404, message = "Post not found")
+    })
+    public ResponseEntity updatePost(@PathVariable String id, @RequestBody PostDto post) throws Exceptions.PostExistsException {
         if (service.doesPostExist(id)){
             Optional<PostDto> storedPost = service.findPostWithGivenId(id);
             post.id = storedPost.get().id;
             post.title = storedPost.get().title;
             post.content = storedPost.get().content;
         }
-        return new ResponseEntity("Product updated successfully", HttpStatus.OK);
+        return new ResponseEntity("Post updated successfully", HttpStatus.OK);
     }
 
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity delete(@PathVariable String id) throws Exceptions.PostExistsException {
+    @ApiOperation(value = "Delete Post", nickname = "deletePosts")
+    @ApiResponses ({
+            @ApiResponse(code = 200, message = "OK", response = PostDto.class),
+            @ApiResponse(code = 404, message = "Post not found")
+    })
+    public ResponseEntity deletePost(@PathVariable String id) throws Exceptions.PostExistsException {
         service.deletePost(id);
-        return new ResponseEntity("Product deleted successfully", HttpStatus.OK);
+        return new ResponseEntity("Post deleted successfully", HttpStatus.OK);
 
     }
 }
