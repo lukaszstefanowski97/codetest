@@ -8,12 +8,8 @@ public class Service {
 
     public static Repository repository;
 
-    public static Boolean doesPostExist(String id) {
-        return repository.existsById(id);
-    }
-
     public static void post(PostDto post) throws Exceptions.PostExistsException {
-        if (doesPostExist(post.id)) {
+        if (repository.existsById(post.id)) {
             throw new Exceptions.PostExistsException("Post already exists");
         } else {
             post.setId(LocalDate.now().toString());
@@ -22,7 +18,7 @@ public class Service {
     }
 
     public static void updatePost(PostDto post) throws Exceptions.PostExistsException {
-        if (doesPostExist(post.id)) {
+        if (repository.existsById(post.id)) {
             repository.save(post);
         } else {
             throw new Exceptions.PostExistsException("404 Post with given id does not exist");
@@ -30,7 +26,7 @@ public class Service {
     }
 
     public void deletePost(String id) throws Exceptions.PostExistsException {
-        if (doesPostExist(id)) {
+        if (repository.existsById(id)) {
             repository.deleteById(id);
         } else {
             throw new Exceptions.PostExistsException("404 Post with given id does not exist");
@@ -42,7 +38,7 @@ public class Service {
     }
 
     public Optional<PostDto> findPostWithGivenId(String id) throws Exceptions.PostExistsException {
-        if (!doesPostExist(id)) {
+        if (!repository.existsById(id)) {
             throw new Exceptions.PostExistsException("404 Post with given id does not exist");
         }
         return repository.findById(id);
