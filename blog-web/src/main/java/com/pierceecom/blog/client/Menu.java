@@ -33,8 +33,8 @@ public class Menu {
     }
 
     public static void printMenu() {
-        System.out.println("[0] Add post\n[1] Display selected post\n[2] Display all posts\n[3] Delete selected post" +
-                "\n[4] Exit");
+        System.out.println("[0] Exit\n[1] Add post\n[2] Display all posts\n[3] Display selected post" +
+                "\n[4] Delete selected post");
     }
 
     public static Integer enterInteger(){
@@ -50,6 +50,21 @@ public class Menu {
         } catch (Exception type) {
             System.out.println("That was not an integer. Please type again:\n");
             return enterInteger();
+        }
+    }
+
+    public static String enterId() {
+        try {
+            Scanner enterInteger = new Scanner(System.in);
+            System.out.println("Enter ID: ");
+            String id = enterInteger.nextLine();
+            if (id.length() < 1) {
+                System.out.println("Your ID was not valid. Please type again.");
+                return enterId();
+            } else return id;
+        } catch (Exception e) {
+            System.out.println("Your ID was not valid. Please type again.");
+            return enterId();
         }
     }
 
