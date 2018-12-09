@@ -46,9 +46,9 @@ public class RestController {
     @ApiOperation(value = "Save Post", nickname = "getAllPosts")
     @ApiResponse(code = 200, message = "OK", response = PostDto.class)
 
-    public ResponseEntity savePost(@RequestBody PostDto post) throws Exceptions.PostExistsException {
+    public ResponseEntity<String> savePost(@RequestBody PostDto post) throws Exceptions.PostExistsException {
         service.post(post);
-        return new ResponseEntity("Post saved successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Post saved successfully", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
@@ -57,14 +57,14 @@ public class RestController {
             @ApiResponse(code = 200, message = "OK", response = PostDto.class),
             @ApiResponse(code = 404, message = "Post not found")
     })
-    public ResponseEntity updatePost(@PathVariable String id, @RequestBody PostDto post) throws Exceptions.PostExistsException {
+    public ResponseEntity<String> updatePost(@PathVariable String id, @RequestBody PostDto post) throws Exceptions.PostExistsException {
         if (service.doesPostExist(id)){
             Optional<PostDto> storedPost = service.findPostWithGivenId(id);
             post.id = storedPost.get().id;
             post.title = storedPost.get().title;
             post.content = storedPost.get().content;
         }
-        return new ResponseEntity("Post updated successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Post updated successfully", HttpStatus.OK);
     }
 
 
@@ -74,9 +74,9 @@ public class RestController {
             @ApiResponse(code = 200, message = "OK", response = PostDto.class),
             @ApiResponse(code = 404, message = "Post not found")
     })
-    public ResponseEntity deletePost(@PathVariable String id) throws Exceptions.PostExistsException {
+    public ResponseEntity<String> deletePost(@PathVariable String id) throws Exceptions.PostExistsException {
         service.deletePost(id);
-        return new ResponseEntity("Post deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Post deleted successfully", HttpStatus.OK);
 
     }
 }

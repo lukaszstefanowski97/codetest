@@ -15,7 +15,6 @@ public class ConnetionSettings {
 
     public static HttpHeaders returnHeader() {
         HttpHeaders httpHeaders = new HttpHeaders();
-        String mediaType;
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         return httpHeaders;
     }

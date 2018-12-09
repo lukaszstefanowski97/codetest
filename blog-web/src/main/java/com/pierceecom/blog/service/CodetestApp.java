@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CodetestApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(CodetestApp.class, args);
         Menu.runApp();
+        SpringApplication.run(CodetestApp.class, args);
     }
 }
