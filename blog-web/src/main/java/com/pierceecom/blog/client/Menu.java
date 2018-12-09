@@ -30,16 +30,20 @@ public class Menu {
             System.out.println("Please type content: ");
             String content = enterString();
             connetionSettings.savePost(id, title, content);
+            runMenuMechanism();
         } else if (option == 2 ) {
             connetionSettings.getAllPosts();
+            runMenuMechanism();
         } else if (option == 3 ) {
             System.out.println("Please type ID: ");
             String id = enterString();
             connetionSettings.getPost(id);
+            runMenuMechanism();
         } else if (option == 4 ) {
             System.out.println("Please type ID: ");
             String id = enterString();
             connetionSettings.removePost(id);
+            runMenuMechanism();
         }
         return 0;
     }
