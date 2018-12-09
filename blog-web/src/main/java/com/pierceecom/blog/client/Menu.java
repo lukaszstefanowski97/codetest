@@ -7,11 +7,13 @@ import java.util.Scanner;
 
 public class Menu {
 
+    public static ConnetionSettings connetionSettings = new ConnetionSettings();
+
     public static void runApp() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Menu.class);
         Menu contextBean = applicationContext.getBean(Menu.class);
 
-        runMenuMechanism();
+        contextBean.runMenuMechanism();
     }
 
     public static Integer runMenuMechanism(){
@@ -21,13 +23,23 @@ public class Menu {
             System.out.println("Bye!");
             return 0;
         } else if (option == 1 ) {
-
+            System.out.println("Please type ID: ");
+            String id = enterString();
+            System.out.println("Please type title: ");
+            String title = enterString();
+            System.out.println("Please type content: ");
+            String content = enterString();
+            connetionSettings.savePost(id, title, content);
         } else if (option == 2 ) {
-
+            connetionSettings.getAllPosts();
         } else if (option == 3 ) {
-
+            System.out.println("Please type ID: ");
+            String id = enterString();
+            connetionSettings.getPost(id);
         } else if (option == 4 ) {
-
+            System.out.println("Please type ID: ");
+            String id = enterString();
+            connetionSettings.removePost(id);
         }
         return 0;
     }
@@ -53,18 +65,17 @@ public class Menu {
         }
     }
 
-    public static String enterId() {
+    public static String enterString() {
         try {
             Scanner enterInteger = new Scanner(System.in);
-            System.out.println("Enter ID: ");
             String id = enterInteger.nextLine();
             if (id.length() < 1) {
-                System.out.println("Your ID was not valid. Please type again.");
-                return enterId();
+                System.out.println("Your string was not valid. Please type again.");
+                return enterString();
             } else return id;
         } catch (Exception e) {
-            System.out.println("Your ID was not valid. Please type again.");
-            return enterId();
+            System.out.println("Your string was not valid. Please type again.");
+            return enterString();
         }
     }
 
