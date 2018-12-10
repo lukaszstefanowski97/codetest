@@ -37,6 +37,7 @@
     </build>
     <modules>
         <module>blog-web</module>
+        <module>client</module>
         <module>integration-test</module>
     </modules>
 </project>

@@ -1,6 +1,5 @@
 package com.pierceecom.blog.service;
 
-import com.pierceecom.blog.client.Menu;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CodetestApp {
 
     public static void main(String[] args) {
-        Menu.runApp();
         SpringApplication.run(CodetestApp.class, args);
     }
 }

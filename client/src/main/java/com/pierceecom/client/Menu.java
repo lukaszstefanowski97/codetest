@@ -1,4 +1,4 @@
-package com.pierceecom.blog.client;
+package com.pierceecom.client;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static ConnetionSettings connetionSettings = new ConnetionSettings();
+    public static com.pierceecom.blog.client.ConnetionSettings connetionSettings = new com.pierceecom.blog.client.ConnetionSettings();
 
-    public static void runApp() {
+    public static void main(String[] args) {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Menu.class);
         Menu contextBean = applicationContext.getBean(Menu.class);
 
