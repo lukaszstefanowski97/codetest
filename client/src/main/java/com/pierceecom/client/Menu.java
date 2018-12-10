@@ -49,8 +49,11 @@ public class Menu {
     }
 
     public static void printMenu() {
-        System.out.println("[0] Exit\n[1] Add post\n[2] Display all posts\n[3] Display selected post" +
-                "\n[4] Delete selected post");
+        System.out.println("[0] Exit\n" +
+                "[1] Add post\n" +
+                "[2] Display all posts\n" +
+                "[3] Display selected post\n" +
+                "[4] Delete selected post");
     }
 
     public static Integer enterInteger(){
