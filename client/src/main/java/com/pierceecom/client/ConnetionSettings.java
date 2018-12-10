@@ -1,4 +1,4 @@
-package com.pierceecom.blog.client;
+package com.pierceecom.client;
 
 import com.pierceecom.blog.service.PostDto;
 import org.springframework.core.ParameterizedTypeReference;

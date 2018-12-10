@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static com.pierceecom.blog.client.ConnetionSettings connetionSettings = new com.pierceecom.blog.client.ConnetionSettings();
+    public static ConnetionSettings connetionSettings = new ConnetionSettings();
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Menu.class);
