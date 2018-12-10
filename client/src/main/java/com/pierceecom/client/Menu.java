@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static ConnetionSettings connetionSettings = new ConnetionSettings();
+    public static ConnectionSettings connectionSettings = new ConnectionSettings();
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Menu.class);
@@ -29,20 +29,20 @@ public class Menu {
             String title = enterString();
             System.out.println("Please type content: ");
             String content = enterString();
-            connetionSettings.savePost(id, title, content);
+            connectionSettings.savePost(id, title, content);
             runMenuMechanism();
         } else if (option == 2 ) {
-            connetionSettings.getAllPosts();
+            connectionSettings.getAllPosts();
             runMenuMechanism();
         } else if (option == 3 ) {
             System.out.println("Please type ID: ");
             String id = enterString();
-            connetionSettings.getPost(id);
+            connectionSettings.getPost(id);
             runMenuMechanism();
         } else if (option == 4 ) {
             System.out.println("Please type ID: ");
             String id = enterString();
-            connetionSettings.removePost(id);
+            connectionSettings.removePost(id);
             runMenuMechanism();
         }
         return 0;

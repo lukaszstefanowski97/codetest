@@ -9,7 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.LinkedList;
 
-public class ConnetionSettings {
+public class ConnectionSettings {
 
     public RestTemplate restTemplate;
 
@@ -19,7 +19,7 @@ public class ConnetionSettings {
         return httpHeaders;
     }
 
-    public ConnetionSettings() {
+    public ConnectionSettings() {
         this.restTemplate = restTemplate;
     }
 
